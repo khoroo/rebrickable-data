@@ -1,0 +1,193 @@
+<svg width="1400" height="950" xmlns="http://www.w3.org/2000/svg" style="background-color: #2d3748; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">
+  <defs>
+    <style>
+      .table-box {
+        fill: #1a202c;
+        stroke: #00c5c7;
+        stroke-width: 1.5;
+      }
+      .table-header {
+        fill: #2d3748;
+        stroke: #00c5c7;
+        stroke-width: 1.5;
+      }
+      .table-title {
+        font-size: 14px;
+        font-weight: bold;
+        fill: #e2e8f0;
+        text-anchor: middle;
+      }
+      .col-name {
+        font-size: 13px;
+        fill: #e2e8f0;
+      }
+      .col-type {
+        font-size: 13px;
+        fill: #a0aec0;
+        text-anchor: end;
+      }
+      .relationship {
+        fill: none;
+        stroke: #00c5c7;
+        stroke-width: 1.5;
+        stroke-dasharray: 5, 5;
+      }
+    </style>
+    <!-- "One" side marker (diamond) -->
+    <marker id="one-marker" markerWidth="12" markerHeight="12" refX="6" refY="6" orient="auto">
+      <path d="M 6 0 L 12 6 L 6 12 L 0 6 Z" fill="#1a202c" stroke="#00c5c7" stroke-width="1.5"/>
+    </marker>
+    <!-- "Many" side marker (empty square) -->
+    <marker id="many-marker" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto">
+      <rect x="0" y="0" width="10" height="10" fill="#1a202c" stroke="#00c5c7" stroke-width="1.5"/>
+    </marker>
+  </defs>
+
+  <!-- TABLES -->
+
+  <!-- inventories -->
+  <g transform="translate(590, 20)">
+    <rect class="table-box" width="220" height="100"/>
+    <rect class="table-header" width="220" height="30"/>
+    <text class="table-title" x="110" y="21">inventories</text>
+    <text class="col-name" x="15" y="55">🔑 id</text><text class="col-type" x="205" y="55">int4</text>
+    <text class="col-name" x="15" y="75">version</text><text class="col-type" x="205" y="75">int4</text>
+    <text class="col-name" x="15" y="95">set_num</text><text class="col-type" x="205" y="95">varchar(20)</text>
+  </g>
+
+  <!-- inventory_parts -->
+  <g transform="translate(200, 250)">
+    <rect class="table-box" width="220" height="140"/>
+    <rect class="table-header" width="220" height="30"/>
+    <text class="table-title" x="110" y="21">inventory_parts</text>
+    <text class="col-name" x="15" y="55">inventory_id</text><text class="col-type" x="205" y="55">int4</text>
+    <text class="col-name" x="15" y="75">part_num</text><text class="col-type" x="205" y="75">varchar(20)</text>
+    <text class="col-name" x="15" y="95">color_id</text><text class="col-type" x="205" y="95">int4</text>
+    <text class="col-name" x="15" y="115">quantity</text><text class="col-type" x="205" y="115">int4</text>
+    <text class="col-name" x="15" y="135">is_spare</text><text class="col-type" x="205" y="135">bool</text>
+  </g>
+
+  <!-- inventory_minifigs -->
+  <g transform="translate(590, 250)">
+    <rect class="table-box" width="220" height="100"/>
+    <rect class="table-header" width="220" height="30"/>
+    <text class="table-title" x="110" y="21">inventory_minifigs</text>
+    <text class="col-name" x="15" y="55">inventory_id</text><text class="col-type" x="205" y="55">int4</text>
+    <text class="col-name" x="15" y="75">fig_num</text><text class="col-type" x="205" y="75">varchar(20)</text>
+    <text class="col-name" x="15" y="95">quantity</text><text class="col-type" x="205" y="95">int4</text>
+  </g>
+
+  <!-- inventory_sets -->
+  <g transform="translate(980, 250)">
+    <rect class="table-box" width="220" height="100"/>
+    <rect class="table-header" width="220" height="30"/>
+    <text class="table-title" x="110" y="21">inventory_sets</text>
+    <text class="col-name" x="15" y="55">inventory_id</text><text class="col-type" x="205" y="55">int4</text>
+    <text class="col-name" x="15" y="75">set_num</text><text class="col-type" x="205" y="75">varchar(20)</text>
+    <text class="col-name" x="15" y="95">quantity</text><text class="col-type" x="205" y="95">int4</text>
+  </g>
+
+  <!-- parts -->
+  <g transform="translate(120, 490)">
+    <rect class="table-box" width="220" height="100"/>
+    <rect class="table-header" width="220" height="30"/>
+    <text class="table-title" x="110" y="21">parts</text>
+    <text class="col-name" x="15" y="55">🔑 part_num</text><text class="col-type" x="205" y="55">varchar(20)</text>
+    <text class="col-name" x="15" y="75">name</text><text class="col-type" x="205" y="75">varchar(250)</text>
+    <text class="col-name" x="15" y="95">part_cat_id</text><text class="col-type" x="205" y="95">int4</text>
+  </g>
+
+  <!-- colors -->
+  <g transform="translate(360, 490)">
+    <rect class="table-box" width="220" height="120"/>
+    <rect class="table-header" width="220" height="30"/>
+    <text class="table-title" x="110" y="21">colors</text>
+    <text class="col-name" x="15" y="55">🔑 id</text><text class="col-type" x="205" y="55">int4</text>
+    <text class="col-name" x="15" y="75">name</text><text class="col-type" x="205" y="75">varchar(200)</text>
+    <text class="col-name" x="15" y="95">rgb</text><text class="col-type" x="205" y="95">varchar(6)</text>
+    <text class="col-name" x="15" y="115">is_trans</text><text class="col-type" x="205" y="115">bool</text>
+  </g>
+
+  <!-- minifigs -->
+  <g transform="translate(590, 430)">
+    <rect class="table-box" width="220" height="100"/>
+    <rect class="table-header" width="220" height="30"/>
+    <text class="table-title" x="110" y="21">minifigs</text>
+    <text class="col-name" x="15" y="55">🔑 fig_num</text><text class="col-type" x="205" y="55">varchar(20)</text>
+    <text class="col-name" x="15" y="75">name</text><text class="col-type" x="205" y="75">varchar(256)</text>
+    <text class="col-name" x="15" y="95">num_parts</text><text class="col-type" x="205" y="95">int4</text>
+  </g>
+
+  <!-- sets -->
+  <g transform="translate(980, 430)">
+    <rect class="table-box" width="220" height="140"/>
+    <rect class="table-header" width="220" height="30"/>
+    <text class="table-title" x="110" y="21">sets</text>
+    <text class="col-name" x="15" y="55">🔑 set_num</text><text class="col-type" x="205" y="55">varchar(20)</text>
+    <text class="col-name" x="15" y="75">name</text><text class="col-type" x="205" y="75">varchar(256)</text>
+    <text class="col-name" x="15" y="95">year</text><text class="col-type" x="205" y="95">int4</text>
+    <text class="col-name" x="15" y="115">theme_id</text><text class="col-type" x="205" y="115">int4</text>
+    <text class="col-name" x="15" y="135">num_parts</text><text class="col-type" x="205" y="135">int4</text>
+  </g>
+
+  <!-- themes -->
+  <g transform="translate(980, 650)">
+    <rect class="table-box" width="220" height="100"/>
+    <rect class="table-header" width="220" height="30"/>
+    <text class="table-title" x="110" y="21">themes</text>
+    <text class="col-name" x="15" y="55">🔑 id</text><text class="col-type" x="205" y="55">int4</text>
+    <text class="col-name" x="15" y="75">name</text><text class="col-type" x="205" y="75">varchar(40)</text>
+    <text class="col-name" x="15" y="95">parent_id</text><text class="col-type" x="205" y="95">int4</text>
+  </g>
+
+  <!-- part_categories -->
+  <g transform="translate(120, 670)">
+    <rect class="table-box" width="220" height="80"/>
+    <rect class="table-header" width="220" height="30"/>
+    <text class="table-title" x="110" y="21">part_categories</text>
+    <text class="col-name" x="15" y="55">🔑 id</text><text class="col-type" x="205" y="55">int4</text>
+    <text class="col-name" x="15" y="75">name</text><text class="col-type" x="205" y="75">varchar(200)</text>
+  </g>
+  
+  <!-- part_relationships -->
+  <g transform="translate(120, 830)">
+    <rect class="table-box" width="220" height="100"/>
+    <rect class="table-header" width="220" height="30"/>
+    <text class="table-title" x="110" y="21">part_relationships</text>
+    <text class="col-name" x="15" y="55">rel_type</text><text class="col-type" x="205" y="55">varchar(1)</text>
+    <text class="col-name" x="15" y="75">child_part_num</text><text class="col-type" x="205" y="75">varchar(20)</text>
+    <text class="col-name" x="15" y="95">parent_part_num</text><text class="col-type" x="205" y="95">varchar(20)</text>
+  </g>
+
+  <!-- elements -->
+  <g transform="translate(360, 690)">
+    <rect class="table-box" width="220" height="100"/>
+    <rect class="table-header" width="220" height="30"/>
+    <text class="table-title" x="110" y="21">elements</text>
+    <text class="col-name" x="15" y="55">🔑 element_id</text><text class="col-type" x="205" y="55">varchar(10)</text>
+    <text class="col-name" x="15" y="75">part_num</text><text class="col-type" x="205" y="75">varchar(20)</text>
+    <text class="col-name" x="15" y="95">color_id</text><text class="col-type" x="205" y="95">int4</text>
+  </g>
+
+  <!-- RELATIONSHIP LINES -->
+  <polyline class="relationship" marker-start="url(#one-marker)" marker-end="url(#many-marker)" points="700,120 700,185 310,185 310,250"/>
+  <polyline class="relationship" marker-start="url(#one-marker)" marker-end="url(#many-marker)" points="700,120 700,250"/>
+  <polyline class="relationship" marker-start="url(#one-marker)" marker-end="url(#many-marker)" points="700,120 700,185 1090,185 1090,250"/>
+  
+  <polyline class="relationship" marker-start="url(#one-marker)" marker-end="url(#many-marker)" points="230,490 230,420 310,420 310,390"/>
+  <polyline class="relationship" marker-start="url(#one-marker)" marker-end="url(#many-marker)" points="470,490 470,420 310,420 310,390"/>
+  
+  <polyline class="relationship" marker-start="url(#one-marker)" marker-end="url(#many-marker)" points="700,430 700,350"/>
+  <polyline class="relationship" marker-start="url(#one-marker)" marker-end="url(#many-marker)" points="1090,430 1090,350"/>
+  
+  <polyline class="relationship" marker-start="url(#one-marker)" marker-end="url(#many-marker)" points="230,670 230,590"/>
+
+  <polyline class="relationship" marker-start="url(#one-marker)" marker-end="url(#many-marker)" points="230,830 230,760 80,760 80,540 120,540"/>
+
+  <polyline class="relationship" marker-start="url(#one-marker)" marker-end="url(#many-marker)" points="230,590 230,640 470,640 470,690"/>
+  <polyline class="relationship" marker-start="url(#one-marker)" marker-end="url(#many-marker)" points="470,610 470,690"/>
+
+  <polyline class="relationship" marker-start="url(#one-marker)" marker-end="url(#many-marker)" points="1090,650 1090,570"/>
+  <path class="relationship" marker-start="url(#one-marker)" marker-end="url(#many-marker)" d="M 1200,715 C 1260,715, 1260,745, 1200,745"/>
+
+</svg>
