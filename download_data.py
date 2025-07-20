@@ -47,7 +47,7 @@ def process_file(args):
             os.remove(gz_path)
 
 def main() -> int:
-    """Finds all CSV links and processes them in parallel."""
+    """Finds all csv.gz links and processes them in parallel."""
     parser = argparse.ArgumentParser(
         description="Download and decompress all CSV data from Rebrickable.",
         formatter_class=argparse.RawTextHelpFormatter
