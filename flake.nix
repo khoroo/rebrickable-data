@@ -16,6 +16,11 @@
             (python313.withPackages (ps: with ps; [
               requests
               tqdm
+              polars
+              altair
+              jupyter
+              ipykernel
+              ipython
             ]))
           ];
         };

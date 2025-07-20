@@ -1,3 +1,5 @@
 data/
 .DS_Store
 result
+.ipynb_checkpoints
+*.ipynb

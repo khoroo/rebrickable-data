@@ -77,7 +77,7 @@ def main():
 
     if not links:
         print("Could not find any downloadable files.")
-        return
+        exit(1)
 
     # Prepare tasks for the process pool, including the download directory
     tasks = [(filename, url, download_dir) for filename, url in links.items()]
@@ -89,8 +89,6 @@ def main():
                   total=len(links),
                   desc="Downloading files",
                   unit="file"))
-
-    print(f"\nDownloaded to '{download_dir}'")
 
 if __name__ == "__main__":
     main()
