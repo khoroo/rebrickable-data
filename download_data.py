@@ -46,7 +46,7 @@ def process_file(args):
         if gz_path.exists():
             os.remove(gz_path)
 
-def main():
+def main() -> int:
     """Finds all CSV links and processes them in parallel."""
     parser = argparse.ArgumentParser(
         description="Download and decompress all CSV data from Rebrickable.",
@@ -69,7 +69,7 @@ def main():
         response.raise_for_status()
     except requests.exceptions.RequestException as e:
         print(f"Error: Could not fetch page {URL}. {e}")
-        return
+        return 1
 
     # Find all file URLs using the specified regular expression
     expr = re.compile(r'"(https?:\/\/cdn.rebrickable.com\/media\/downloads\/([a-zA-Z_\\]+\.csv\.gz)\?\d+\.\d+)"')
@@ -77,7 +77,7 @@ def main():
 
     if not links:
         print("Could not find any downloadable files.")
-        exit(1)
+        return 1
 
     # Prepare tasks for the process pool, including the download directory
     tasks = [(filename, url, download_dir) for filename, url in links.items()]
@@ -89,6 +89,7 @@ def main():
                   total=len(links),
                   desc="Downloading files",
                   unit="file"))
+    return 0
 
 if __name__ == "__main__":
-    main()
+    exit(main())
