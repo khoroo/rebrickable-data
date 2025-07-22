@@ -4,23 +4,32 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
+    rust-overlay.url = "github:oxalica/rust-overlay";
   };
 
-  outputs = { self, nixpkgs, flake-utils }:
+  outputs = { self, nixpkgs, flake-utils, rust-overlay }:
     flake-utils.lib.eachDefaultSystem (system:
       let
-        pkgs = import nixpkgs { inherit system; };
+        pkgs = import nixpkgs { inherit system; overlays = [rust-overlay.overlays.default]; };
+        toolchain = pkgs.rust-bin.fromRustupToolchainFile ./toolchain.toml;
       in {
         devShells.default = pkgs.mkShell {
+          RUST_SRC_PATH = "${toolchain}/lib/rustlib/src/rust/library";
           packages = with pkgs; [
+            toolchain
+            rust-analyzer-unwrapped
+            clippy
             (python313.withPackages (ps: with ps; [
               requests
+              ipython
               tqdm
               polars
               altair
+              matplotlib
               jupyter
               ipykernel
               ipython
+              scipy
             ]))
           ];
         };

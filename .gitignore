@@ -3,3 +3,8 @@ data/
 result
 .ipynb_checkpoints
 *.ipynb
+
+
+# Added by cargo
+
+/target
