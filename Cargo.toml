@@ -9,3 +9,4 @@ palette = { version = "0.7.6", features = ["serializing"] }
 serde = { version = "1.0.219", features = ["derive"] }
 sprs = { version = "0.11.3", features = ["serde"] }
 rayon = "1.10"
+clap = { version = "4.5", features = ["derive"] }

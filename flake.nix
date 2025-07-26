@@ -12,25 +12,28 @@
       let
         pkgs = import nixpkgs { inherit system; overlays = [rust-overlay.overlays.default]; };
         toolchain = pkgs.rust-bin.fromRustupToolchainFile ./toolchain.toml;
+        pythonWithPackages = pkgs.python313.withPackages (ps: with ps; [
+          requests
+          ipython
+          tqdm
+          polars
+          altair
+          matplotlib
+          jupyter
+          ipykernel
+          ipython
+          scipy
+        ]);
       in {
         devShells.default = pkgs.mkShell {
           RUST_SRC_PATH = "${toolchain}/lib/rustlib/src/rust/library";
+          PYTHONPATH = "${pythonWithPackages}/bin/python";
+          PYTHON_PATH = "${pythonWithPackages}/bin/python";
           packages = with pkgs; [
             toolchain
             rust-analyzer-unwrapped
             clippy
-            (python313.withPackages (ps: with ps; [
-              requests
-              ipython
-              tqdm
-              polars
-              altair
-              matplotlib
-              jupyter
-              ipykernel
-              ipython
-              scipy
-            ]))
+            pythonWithPackages
           ];
         };
       });
